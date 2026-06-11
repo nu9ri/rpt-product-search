@@ -1,11 +1,11 @@
-const CACHE_NAME = "rpt-product-search-auto-v5";
+const CACHE_NAME = "rpt-product-search-auto-v6";
 const ASSETS = [
   "./",
-  "./index.html?v=4",
-  "./manifest.json?v=4",
-  "./icons/icon-180.png?v=4",
-  "./icons/icon-192.png?v=4",
-  "./icons/icon-512.png?v=4"
+  "./index.html?v=5",
+  "./manifest.json?v=5",
+  "./icons/icon-180.png?v=5",
+  "./icons/icon-192.png?v=5",
+  "./icons/icon-512.png?v=5"
 ];
 
 self.addEventListener("install", event => {
