@@ -1,63 +1,62 @@
 <!doctype html>
 <html lang="ko">
 <head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>RPT 상품조회</title>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#f5f5f7">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="RPT 상품조회">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>RPT 상품조회 Mobile</title>
 <style>
-:root{--bg:#f5f5f7;--card:#fff;--text:#111;--sub:#777;--line:#e5e5ea;--blue:#007aff;--red:#ff3b30}
+:root{--bg:#f5f5f7;--card:#fff;--text:#111;--line:#e5e5ea;--blue:#007aff;--red:#ff3b30}
 *{box-sizing:border-box}
 body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",Arial,sans-serif;background:var(--bg);color:var(--text)}
 .app{max-width:480px;margin:0 auto;padding:14px 12px 24px}
 .header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:10px}
-h1{margin:0;font-size:22px;letter-spacing:-.5px}
-.ver{font-size:12px;color:#8e8e93}
+h1{margin:0;font-size:22px;letter-spacing:-.5px}.ver{font-size:12px;color:#8e8e93}
 .card{background:var(--card);border-radius:16px;padding:12px;margin-bottom:10px;box-shadow:0 1px 2px rgba(0,0,0,.04)}
-.row{display:flex;gap:8px;align-items:center}
-.label{width:64px;flex:0 0 64px;color:#555;font-size:13px;font-weight:700}
+.row{display:flex;gap:8px;align-items:center}.label{width:64px;flex:0 0 64px;color:#555;font-size:13px;font-weight:700}
 .value-row{display:flex;justify-content:space-between;gap:8px;padding:3px 0;font-size:14px}
 .value-row .k{color:#666}.value-row .v{font-weight:700;text-align:right;max-width:70%;word-break:break-word;user-select:text}
 input[type=text],select{width:100%;border:1px solid #d1d1d6;background:#fff;border-radius:10px;padding:10px 9px;font-size:15px;outline:none}
 select:disabled{background:#f2f2f7;color:#8e8e93}
 button{border:0;border-radius:10px;padding:10px 12px;font-size:14px;font-weight:700;background:var(--blue);color:#fff;white-space:nowrap}
-button.secondary{background:#f2f2f7;color:#111}
-.section-title{font-size:15px;font-weight:800;margin-bottom:8px}
+button.secondary{background:#f2f2f7;color:#111}.section-title{font-size:15px;font-weight:800;margin-bottom:8px}
 .control{display:flex;align-items:center;gap:8px;margin:6px 0}.control .label{font-weight:500;color:#666}
-.filebox input{display:none}.filebtn{display:block;text-align:center;background:#fff;border:1px dashed #b8b8bd;border-radius:14px;padding:14px;font-weight:700;color:#111}
-.hint{color:#8e8e93;font-size:12px;margin-top:6px;line-height:1.4}
-.cart{display:none}.cart.show{display:block}
-.item{background:#f9f9fb;border-radius:12px;padding:10px;margin-bottom:8px}
-.item-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
-.item-title{font-size:14px;font-weight:800}.x{border:0;background:transparent;color:var(--red);font-size:22px;padding:0 4px;line-height:1}
+.cart{display:none}.cart.show{display:block}.item{background:#f9f9fb;border-radius:12px;padding:10px;margin-bottom:8px}
+.item-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}.item-title{font-size:14px;font-weight:800}
+.x{border:0;background:transparent;color:var(--red);font-size:22px;padding:0 4px;line-height:1}
 .item-line{display:flex;justify-content:space-between;gap:8px;font-size:13px;padding:2px 0}
 .item-line span:first-child{color:#666}.item-line span:last-child{text-align:right;font-weight:600;user-select:text}
 .total{border-top:1px solid var(--line);padding-top:10px;margin-top:8px;display:flex;justify-content:space-between;font-weight:900;font-size:17px}
 .status{min-height:20px;text-align:center;color:#8e8e93;font-size:12px;margin-top:6px}
+.update-note{font-size:12px;color:#8e8e93;line-height:1.4}
 </style>
 </head>
 <body>
 <div class="app">
-  <div class="header"><h1>RPT 상품조회</h1><div class="ver">Mobile v1.0</div></div>
-  <div class="card filebox">
-    <label class="filebtn" for="fileInput">★상품코드 데이터.xlsx 선택</label>
-    <input id="fileInput" type="file" accept=".xlsx,.xls" />
-    <div class="hint">모바일 브라우저 보안상 엑셀 파일은 처음 한 번 직접 선택해야 합니다.</div>
+  <div class="header"><h1>RPT 상품조회</h1><div class="ver">Auto v1.0</div></div>
+
+  <div class="card">
+    <div class="row"><div class="label">상품번호</div><input id="productNo" type="text" inputmode="numeric" placeholder="상품번호 입력" /><button id="searchBtn">검색</button></div>
   </div>
-  <div class="card"><div class="row"><div class="label">상품번호</div><input id="productNo" type="text" inputmode="numeric" placeholder="상품번호 입력" /><button id="searchBtn">검색</button></div></div>
+
   <div class="card"><div class="value-row"><span class="k">상품명</span><span id="productName" class="v">-</span></div><div class="value-row"><span class="k">기본가</span><span id="basePrice" class="v">-</span></div></div>
+
   <div class="card"><div class="section-title">메인 옵션</div><div class="control"><div class="label">옵션1</div><select id="main1"></select></div><div class="control"><div class="label">옵션2</div><select id="main2" disabled><option>선택 불가</option></select></div><div class="control"><div class="label">옵션3</div><select id="main3" disabled><option>선택 불가</option></select></div></div>
+
   <div class="card"><div class="section-title">추가 옵션</div><div class="control"><div class="label">옵션1</div><select id="add1"></select></div><div class="control"><div class="label">옵션2</div><select id="add2" disabled><option>선택 불가</option></select></div></div>
+
   <div id="cart" class="card cart"><div class="section-title">선택 내역</div><div id="items"></div><div class="total"><span>총합가격</span><span id="totalPrice">0원</span></div></div>
+
   <div class="row"><button id="resetBtn" class="secondary" style="flex:1">초기화</button></div>
   <div id="status" class="status"></div>
+  <div class="update-note">데이터는 서버의 products.json을 자동으로 불러옵니다.</div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+
 <script>
 const COLS={no:"상품번호",name:"상품명",base:"기본가격",cat:"분류",o1:"옵션1",o2:"옵션2",o3:"옵션3",price:"가격",code:"상품코드",batch:"배번호"};
 let data=[],rows=[],mainRows=[],addRows=[],selectedItems=[];
@@ -67,12 +66,12 @@ function num(v){if(v===undefined||v===null||v==="")return 0;const n=Number(Strin
 function won(v){return Math.round(num(v)).toLocaleString("ko-KR")+"원"}
 function priceText(v){return Math.round(num(v)).toLocaleString("ko-KR")}
 function uniqueOptions(rows,col,showPrice){const seen=new Set(),arr=[];rows.forEach(r=>{const text=norm(r[col]);if(!text)return;const key=showPrice?`${text}|${num(r[COLS.price])}`:text;if(seen.has(key))return;seen.add(key);arr.push({text,price:r[COLS.price],showPrice})});return arr}
-function setSelect(sel,options,placeholder="선택"){sel.innerHTML="";const blank=document.createElement("option");blank.value="";blank.textContent=placeholder;sel.appendChild(blank);options.forEach(o=>{const opt=document.createElement("option");opt.value=o.text;opt.dataset.price=o.price??"";opt.textContent=o.showPrice?`${o.text}          ${priceText(o.price)}`:o.text;sel.appendChild(opt)});sel.disabled=false;sel.value=""}
+function setSelect(sel,options,placeholder="선택"){sel.innerHTML="";const blank=document.createElement("option");blank.value="";blank.textContent=placeholder;sel.appendChild(blank);options.forEach(o=>{const opt=document.createElement("option");opt.value=o.text;opt.textContent=o.showPrice?`${o.text}          ${priceText(o.price)}`:o.text;sel.appendChild(opt)});sel.disabled=false;sel.value=""}
 function disableSelect(sel){sel.innerHTML='<option value="">선택 불가</option>';sel.disabled=true}
-function setStatus(t){$("status").textContent=t;if(t)setTimeout(()=>{$("status").textContent=""},1200)}
-$("fileInput").addEventListener("change",async e=>{const file=e.target.files[0];if(!file)return;const buf=await file.arrayBuffer();const wb=XLSX.read(buf);const sheetName=wb.Sheets["list"]?"list":wb.SheetNames[0];const ws=wb.Sheets[sheetName];data=XLSX.utils.sheet_to_json(ws,{defval:""});data=data.map(r=>{Object.keys(r).forEach(k=>r[k]=norm(r[k]));return r});setStatus("데이터 불러옴")});
+function setStatus(t){$("status").textContent=t;if(t)setTimeout(()=>{$("status").textContent=""},1400)}
+async function loadData(){try{const res=await fetch("./products.json?ts="+Date.now(),{cache:"no-store"});if(!res.ok)throw new Error("data load failed");data=await res.json();setStatus("데이터 자동 불러옴")}catch(e){setStatus("데이터를 불러오지 못했습니다")}}
 $("productNo").addEventListener("keydown",e=>{if(e.key==="Enter")search()});$("searchBtn").addEventListener("click",search);$("resetBtn").addEventListener("click",resetAll);
-function search(){const no=$("productNo").value.trim();if(!data.length){setStatus("엑셀 파일을 먼저 선택하세요");return}if(!no){setStatus("상품번호를 입력하세요");return}rows=data.filter(r=>norm(r[COLS.no])===no);if(!rows.length){clearProduct();setStatus("검색 결과 없음");return}mainRows=rows.filter(r=>norm(r[COLS.cat])==="메인");addRows=rows.filter(r=>norm(r[COLS.cat])==="추가");$("productName").textContent=norm(rows[0][COLS.name]);$("basePrice").textContent=won(rows[0][COLS.base]);fillMain1();fillAdd1();setStatus("옵션을 선택하세요")}
+function search(){const no=$("productNo").value.trim();if(!data.length){setStatus("데이터 로딩 중입니다");return}if(!no){setStatus("상품번호를 입력하세요");return}rows=data.filter(r=>norm(r[COLS.no])===no);if(!rows.length){clearProduct();setStatus("검색 결과 없음");return}mainRows=rows.filter(r=>norm(r[COLS.cat])==="메인");addRows=rows.filter(r=>norm(r[COLS.cat])==="추가");$("productName").textContent=norm(rows[0][COLS.name]);$("basePrice").textContent=won(rows[0][COLS.base]);fillMain1();fillAdd1();setStatus("옵션을 선택하세요")}
 function fillMain1(){disableSelect($("main2"));disableSelect($("main3"));const has2=mainRows.some(r=>norm(r[COLS.o2]));const has3=mainRows.some(r=>norm(r[COLS.o3]));setSelect($("main1"),uniqueOptions(mainRows,COLS.o1,!(has2||has3)),"선택")}
 function fillAdd1(){disableSelect($("add2"));const has2=addRows.some(r=>norm(r[COLS.o2]));setSelect($("add1"),uniqueOptions(addRows,COLS.o1,!has2),"선택")}
 $("main1").addEventListener("change",()=>{const o1=$("main1").value;const f=mainRows.filter(r=>norm(r[COLS.o1])===o1);if(!f.length)return;const has2=f.some(r=>norm(r[COLS.o2]));const has3=f.some(r=>norm(r[COLS.o3]));if(!has2&&!has3){addItem("메인",f[0]);clearMain();return}disableSelect($("main3"));setSelect($("main2"),uniqueOptions(f,COLS.o2,!has3),"선택")});
@@ -87,16 +86,8 @@ function clearMain(){$("main1").value="";disableSelect($("main2"));disableSelect
 function clearAdd(){$("add1").value="";disableSelect($("add2"))}
 function clearProduct(){$("productName").textContent="-";$("basePrice").textContent="-";setSelect($("main1"),[],"선택");disableSelect($("main2"));disableSelect($("main3"));setSelect($("add1"),[],"선택");disableSelect($("add2"))}
 function resetAll(){$("productNo").value="";selectedItems=[];rows=[];mainRows=[];addRows=[];clearProduct();renderCart();setStatus("")}
-clearProduct();
+clearProduct();loadData();
+if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./service-worker.js").catch(()=>{}))}
 </script>
-
-<script>
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("./service-worker.js").catch(() => {});
-  });
-}
-</script>
-
 </body>
 </html>
