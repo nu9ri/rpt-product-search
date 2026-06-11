@@ -1,10 +1,11 @@
-const CACHE_NAME = "rpt-product-search-auto-v2";
+const CACHE_NAME = "rpt-product-search-auto-v3";
 const ASSETS = [
   "./",
-  "./index.html",
-  "./manifest.json",
-  "./icons/icon-192.png",
-  "./icons/icon-512.png"
+  "./index.html?v=2",
+  "./manifest.json?v=2",
+  "./icons/icon-180.png?v=2",
+  "./icons/icon-192.png?v=2",
+  "./icons/icon-512.png?v=2"
 ];
 
 self.addEventListener("install", event => {
@@ -22,7 +23,7 @@ self.addEventListener("activate", event => {
 self.addEventListener("fetch", event => {
   const url = new URL(event.request.url);
   if (url.pathname.endsWith("/products.json")) {
-    event.respondWith(fetch(event.request).catch(() => caches.match(event.request)));
+    event.respondWith(fetch(event.request, { cache: "no-store" }).catch(() => caches.match(event.request)));
     return;
   }
   event.respondWith(caches.match(event.request).then(cached => cached || fetch(event.request)));
