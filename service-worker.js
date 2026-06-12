@@ -1,5 +1,5 @@
-const CACHE_NAME = "rpt-product-search-auto-v10-verified";
-const ASSETS = ["./","./index.html?v=8.1","./manifest.json?v=8.1","./icons/icon-180.png?v=8.1","./icons/icon-192.png?v=8.1","./icons/icon-512.png?v=8.1"];
+const CACHE_NAME = "rpt-product-search-auto-v11-inline";
+const ASSETS = ["./","./index.html?v=8.2","./manifest.json?v=8.2","./icons/icon-180.png?v=8.2","./icons/icon-192.png?v=8.2","./icons/icon-512.png?v=8.2"];
 self.addEventListener("install", event => {event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS))); self.skipWaiting();});
 self.addEventListener("activate", event => {event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k))))); self.clients.claim();});
 self.addEventListener("fetch", event => {
