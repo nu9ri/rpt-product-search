@@ -4,20 +4,20 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>RPT 상품조회</title>
-<link rel="manifest" href="manifest.json?v=5">
-<link rel="apple-touch-icon" sizes="180x180" href="icons/icon-180.png?v=5">
-<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png?v=5">
-<link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png?v=5">
+<link rel="manifest" href="manifest.json?v=7">
 <meta name="theme-color" content="#f5f5f7">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="RPT 상품조회">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="apple-touch-icon" sizes="180x180" href="icons/icon-180.png?v=7">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png?v=7">
+<link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png?v=7">
 <style>
 :root{--bg:#f5f5f7;--card:#fff;--text:#111;--line:#e5e5ea;--blue:#007aff;--red:#ff3b30}
 *{box-sizing:border-box}
 body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",Arial,sans-serif;background:var(--bg);color:var(--text)}
 .app{width:100vw;max-width:none;margin:0;padding:28px 18px 40px}
-.header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:10px}
+.header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:18px}
 h1{margin:0;font-size:42px;letter-spacing:-1px}.ver{font-size:20px;color:#8e8e93}
 .card{background:var(--card);border-radius:28px;padding:26px;margin-bottom:22px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
 .row{display:flex;gap:14px;align-items:center}.label{width:108px;flex:0 0 108px;color:#555;font-size:24px;font-weight:700}
@@ -28,55 +28,66 @@ select:disabled{background:#f2f2f7;color:#8e8e93}
 button{border:0;border-radius:18px;height:86px;padding:0 24px;font-size:26px;font-weight:700;background:var(--blue);color:#fff;white-space:nowrap}
 button.secondary{background:#f2f2f7;color:#111}.section-title{font-size:28px;font-weight:800;margin-bottom:18px}
 .control{display:flex;align-items:center;gap:16px;margin:16px 0}.control .label{font-weight:600;color:#666}
-.cart{display:none}.cart.show{display:block}.item{background:#f9f9fb;border-radius:20px;padding:20px;margin-bottom:16px}
-.item-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}.item-title{font-size:26px;font-weight:800}
+.cart{display:none}.cart.show{display:block}
+.item{background:#f9f9fb;border-radius:20px;padding:20px;margin-bottom:16px}
+.item-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.item-title{font-size:26px;font-weight:800}
 .x{border:0;background:transparent;color:var(--red);font-size:40px;padding:0 8px;line-height:1}
 .item-line{display:flex;justify-content:space-between;gap:14px;font-size:24px;padding:5px 0}
 .item-line span:first-child{color:#666}.item-line span:last-child{text-align:right;font-weight:600;user-select:text}
 .total{border-top:2px solid var(--line);padding-top:18px;margin-top:16px;display:flex;justify-content:space-between;font-weight:900;font-size:30px}
 .status{min-height:34px;text-align:center;color:#8e8e93;font-size:21px;margin-top:10px}
 .update-note{font-size:20px;color:#8e8e93;line-height:1.4}
-
 @media (max-width: 430px){
   .app{width:100vw;max-width:none;margin:0;padding:22px 12px 34px}
-  h1{font-size:36px}
-  .ver{font-size:18px}
-  .card{padding:22px;border-radius:24px;margin-bottom:18px}
-  .label{width:94px;flex-basis:94px;font-size:21px}
-  .value-row{font-size:22px}
+  h1{font-size:36px}.ver{font-size:18px}.card{padding:22px;border-radius:24px;margin-bottom:18px}
+  .label{width:94px;flex-basis:94px;font-size:21px}.value-row{font-size:22px}
   input[type=text],select{height:76px;font-size:24px;border-radius:16px}
   button{height:76px;font-size:23px;border-radius:16px;padding:0 18px}
-  .section-title{font-size:25px}
-  .item-title{font-size:24px}
-  .item-line{font-size:21px}
-  .total{font-size:27px}
+  .section-title{font-size:25px}.item-title{font-size:24px}.item-line{font-size:21px}.total{font-size:27px}
 }
-
 </style>
 </head>
 <body>
 <div class="app">
-  <div class="header"><h1>RPT 상품조회</h1><div class="ver">Auto v5.0</div></div>
+  <div class="header"><h1>RPT 상품조회</h1><div class="ver">Auto v7.0</div></div>
 
   <div class="card">
     <div class="row"><div class="label">상품번호</div><input id="productNo" type="text" inputmode="numeric" placeholder="상품번호 입력" /><button id="searchBtn">검색</button></div>
   </div>
 
-  <div class="card"><div class="value-row"><span class="k">상품명</span><span id="productName" class="v">-</span></div><div class="value-row"><span class="k">기본가</span><span id="basePrice" class="v">-</span></div></div>
+  <div class="card">
+    <div class="value-row"><span class="k">상품명</span><span id="productName" class="v">-</span></div>
+    <div class="value-row"><span class="k">기본가</span><span id="basePrice" class="v">-</span></div>
+  </div>
 
-  <div class="card"><div class="section-title">메인 옵션</div><div class="control"><div class="label">옵션1</div><select id="main1"></select></div><div class="control"><div class="label">옵션2</div><select id="main2" disabled><option>선택 불가</option></select></div><div class="control"><div class="label">옵션3</div><select id="main3" disabled><option>선택 불가</option></select></div></div>
+  <div class="card">
+    <div class="section-title">메인 옵션</div>
+    <div class="control"><div class="label">옵션1</div><select id="main1"></select></div>
+    <div class="control"><div class="label">옵션2</div><select id="main2" disabled><option>선택 불가</option></select></div>
+    <div class="control"><div class="label">옵션3</div><select id="main3" disabled><option>선택 불가</option></select></div>
+  </div>
 
-  <div class="card"><div class="section-title">추가 옵션</div><div class="control"><div class="label">옵션1</div><select id="add1"></select></div><div class="control"><div class="label">옵션2</div><select id="add2" disabled><option>선택 불가</option></select></div></div>
+  <div class="card">
+    <div class="section-title">추가 옵션</div>
+    <div class="control"><div class="label">옵션1</div><select id="add1"></select></div>
+    <div class="control"><div class="label">옵션2</div><select id="add2" disabled><option>선택 불가</option></select></div>
+    <div class="control"><div class="label">옵션3</div><select id="add3" disabled><option>선택 불가</option></select></div>
+  </div>
 
-  <div id="cart" class="card cart"><div class="section-title">선택 내역</div><div id="items"></div><div class="total"><span>총합가격</span><span id="totalPrice">0원</span></div></div>
+  <div id="cart" class="card cart">
+    <div class="section-title">선택 내역</div>
+    <div id="items"></div>
+    <div class="total"><span>총합가격</span><span id="totalPrice">0원</span></div>
+  </div>
 
   <div class="row"><button id="resetBtn" class="secondary" style="flex:1">초기화</button></div>
   <div id="status" class="status"></div>
-  <div class="update-note">데이터는 서버의 products.json을 자동으로 불러옵니다.</div>
+  <div class="update-note">선택 내역은 이 휴대폰에 자동 저장됩니다.</div>
 </div>
 
 <script>
 const COLS={no:"상품번호",name:"상품명",base:"기본가격",cat:"분류",o1:"옵션1",o2:"옵션2",o3:"옵션3",price:"가격",code:"상품코드",batch:"배번호"};
+const STORAGE_KEY="rpt_selected_items_v1";
 let data=[],rows=[],mainRows=[],addRows=[],selectedItems=[];
 const $=id=>document.getElementById(id);
 function norm(v){if(v===undefined||v===null)return "";const s=String(v).trim();return s.toLowerCase()==="nan"?"":s}
@@ -88,23 +99,27 @@ function setSelect(sel,options,placeholder="선택"){sel.innerHTML="";const blan
 function disableSelect(sel){sel.innerHTML='<option value="">선택 불가</option>';sel.disabled=true}
 function setStatus(t){$("status").textContent=t;if(t)setTimeout(()=>{$("status").textContent=""},1400)}
 async function loadData(){try{const res=await fetch("./products.json?ts="+Date.now(),{cache:"no-store"});if(!res.ok)throw new Error("data load failed");data=await res.json();setStatus("데이터 자동 불러옴")}catch(e){setStatus("데이터를 불러오지 못했습니다")}}
+function saveCart(){localStorage.setItem(STORAGE_KEY,JSON.stringify(selectedItems))}
+function loadCart(){try{selectedItems=JSON.parse(localStorage.getItem(STORAGE_KEY)||"[]");if(!Array.isArray(selectedItems))selectedItems=[]}catch(e){selectedItems=[]}renderCart()}
 $("productNo").addEventListener("keydown",e=>{if(e.key==="Enter")search()});$("searchBtn").addEventListener("click",search);$("resetBtn").addEventListener("click",resetAll);
-function search(){const no=$("productNo").value.trim();if(!data.length){setStatus("데이터 로딩 중입니다");return}if(!no){setStatus("상품번호를 입력하세요");return}rows=data.filter(r=>norm(r[COLS.no])===no);if(!rows.length){clearProduct();setStatus("검색 결과 없음");return}mainRows=rows.filter(r=>norm(r[COLS.cat])==="메인");addRows=rows.filter(r=>norm(r[COLS.cat])==="추가");$("productName").textContent=norm(rows[0][COLS.name]);$("basePrice").textContent=won(rows[0][COLS.base]);fillMain1();fillAdd1();setStatus("옵션을 선택하세요")}
-function fillMain1(){disableSelect($("main2"));disableSelect($("main3"));const has2=mainRows.some(r=>norm(r[COLS.o2]));const has3=mainRows.some(r=>norm(r[COLS.o3]));setSelect($("main1"),uniqueOptions(mainRows,COLS.o1,!(has2||has3)),"선택")}
-function fillAdd1(){disableSelect($("add2"));const has2=addRows.some(r=>norm(r[COLS.o2]));setSelect($("add1"),uniqueOptions(addRows,COLS.o1,!has2),"선택")}
-$("main1").addEventListener("change",()=>{const o1=$("main1").value;const f=mainRows.filter(r=>norm(r[COLS.o1])===o1);if(!f.length)return;const has2=f.some(r=>norm(r[COLS.o2]));const has3=f.some(r=>norm(r[COLS.o3]));if(!has2&&!has3){addItem("메인",f[0]);clearMain();return}disableSelect($("main3"));setSelect($("main2"),uniqueOptions(f,COLS.o2,!has3),"선택")});
-$("main2").addEventListener("change",()=>{const o1=$("main1").value,o2=$("main2").value;const f=mainRows.filter(r=>norm(r[COLS.o1])===o1&&norm(r[COLS.o2])===o2);if(!f.length)return;const has3=f.some(r=>norm(r[COLS.o3]));if(!has3){addItem("메인",f[0]);clearMain();return}setSelect($("main3"),uniqueOptions(f,COLS.o3,true),"선택")});
-$("main3").addEventListener("change",()=>{const o1=$("main1").value,o2=$("main2").value,o3=$("main3").value;const found=mainRows.find(r=>norm(r[COLS.o1])===o1&&norm(r[COLS.o2])===o2&&norm(r[COLS.o3])===o3);if(found){addItem("메인",found);clearMain()}});
-$("add1").addEventListener("change",()=>{const o1=$("add1").value;const f=addRows.filter(r=>norm(r[COLS.o1])===o1);if(!f.length)return;const has2=f.some(r=>norm(r[COLS.o2]));if(!has2){addItem("추가",f[0]);clearAdd();return}setSelect($("add2"),uniqueOptions(f,COLS.o2,true),"선택")});
-$("add2").addEventListener("change",()=>{const o1=$("add1").value,o2=$("add2").value;const found=addRows.find(r=>norm(r[COLS.o1])===o1&&norm(r[COLS.o2])===o2);if(found){addItem("추가",found);clearAdd()}});
-function addItem(category,row){const price=category==="메인"?num(row[COLS.base])+num(row[COLS.price]):num(row[COLS.price]);selectedItems.push({category,option1:norm(row[COLS.o1]),option2:norm(row[COLS.o2]),option3:norm(row[COLS.o3]),code:norm(row[COLS.code]),batch:norm(row[COLS.batch]),price});renderCart();setStatus("선택 추가됨")}
-function renderCart(){$("cart").classList.toggle("show",selectedItems.length>0);const wrap=$("items");wrap.innerHTML="";selectedItems.forEach((it,idx)=>{const div=document.createElement("div");div.className="item";div.innerHTML=`<div class="item-top"><div class="item-title">${it.category} 옵션</div><button class="x" data-idx="${idx}">×</button></div>${line("옵션1",it.option1)}${it.option2?line("옵션2",it.option2):""}${it.option3?line("옵션3",it.option3):""}${line("코드",it.code)}${line("배번호",it.batch)}${line("가격",won(it.price),true)}`;wrap.appendChild(div)});document.querySelectorAll(".x").forEach(btn=>{btn.onclick=()=>{selectedItems.splice(Number(btn.dataset.idx),1);renderCart()}});const total=selectedItems.reduce((s,i)=>s+i.price,0);$("totalPrice").textContent=won(total)}
+function search(){const no=$("productNo").value.trim();if(!data.length){setStatus("데이터 로딩 중입니다");return}if(!no){setStatus("상품번호를 입력하세요");return}rows=data.filter(r=>norm(r[COLS.no])===no);if(!rows.length){clearProduct();setStatus("검색 결과 없음");return}mainRows=rows.filter(r=>norm(r[COLS.cat])==="메인");addRows=rows.filter(r=>norm(r[COLS.cat])==="추가");$("productName").textContent=norm(rows[0][COLS.name]);$("basePrice").textContent=won(rows[0][COLS.base]);fillGroup(mainRows,"main");fillGroup(addRows,"add");setStatus("옵션을 선택하세요")}
+function fillGroup(groupRows,prefix){disableSelect($(prefix+"2"));disableSelect($(prefix+"3"));const has2=groupRows.some(r=>norm(r[COLS.o2]));const has3=groupRows.some(r=>norm(r[COLS.o3]));setSelect($(prefix+"1"),uniqueOptions(groupRows,COLS.o1,!(has2||has3)),"선택")}
+function handle1(prefix,groupRows,category){const o1=$(prefix+"1").value;const f=groupRows.filter(r=>norm(r[COLS.o1])===o1);if(!f.length)return;const has2=f.some(r=>norm(r[COLS.o2]));const has3=f.some(r=>norm(r[COLS.o3]));if(!has2&&!has3){addItem(category,f[0]);clearGroup(prefix);return}disableSelect($(prefix+"3"));setSelect($(prefix+"2"),uniqueOptions(f,COLS.o2,!has3),"선택")}
+function handle2(prefix,groupRows,category){const o1=$(prefix+"1").value,o2=$(prefix+"2").value;const f=groupRows.filter(r=>norm(r[COLS.o1])===o1&&norm(r[COLS.o2])===o2);if(!f.length)return;const has3=f.some(r=>norm(r[COLS.o3]));if(!has3){addItem(category,f[0]);clearGroup(prefix);return}setSelect($(prefix+"3"),uniqueOptions(f,COLS.o3,true),"선택")}
+function handle3(prefix,groupRows,category){const o1=$(prefix+"1").value,o2=$(prefix+"2").value,o3=$(prefix+"3").value;const found=groupRows.find(r=>norm(r[COLS.o1])===o1&&norm(r[COLS.o2])===o2&&norm(r[COLS.o3])===o3);if(found){addItem(category,found);clearGroup(prefix)}}
+$("main1").addEventListener("change",()=>handle1("main",mainRows,"메인"));
+$("main2").addEventListener("change",()=>handle2("main",mainRows,"메인"));
+$("main3").addEventListener("change",()=>handle3("main",mainRows,"메인"));
+$("add1").addEventListener("change",()=>handle1("add",addRows,"추가"));
+$("add2").addEventListener("change",()=>handle2("add",addRows,"추가"));
+$("add3").addEventListener("change",()=>handle3("add",addRows,"추가"));
+function addItem(category,row){const price=category==="메인"?num(row[COLS.base])+num(row[COLS.price]):num(row[COLS.price]);selectedItems.push({category,option1:norm(row[COLS.o1]),option2:norm(row[COLS.o2]),option3:norm(row[COLS.o3]),code:norm(row[COLS.code]),batch:norm(row[COLS.batch]),price});saveCart();renderCart();setStatus("선택 추가됨")}
+function renderCart(){$("cart").classList.toggle("show",selectedItems.length>0);const wrap=$("items");wrap.innerHTML="";selectedItems.forEach((it,idx)=>{const div=document.createElement("div");div.className="item";div.innerHTML=`<div class="item-top"><div class="item-title">${it.category} 옵션</div><button class="x" data-idx="${idx}">×</button></div>${line("옵션1",it.option1)}${it.option2?line("옵션2",it.option2):""}${it.option3?line("옵션3",it.option3):""}${line("코드",it.code)}${line("배번호",it.batch)}${line("가격",won(it.price),true)}`;wrap.appendChild(div)});document.querySelectorAll(".x").forEach(btn=>{btn.onclick=()=>{selectedItems.splice(Number(btn.dataset.idx),1);saveCart();renderCart()}});const total=selectedItems.reduce((s,i)=>s+num(i.price),0);$("totalPrice").textContent=won(total)}
 function line(k,v,bold=false){return `<div class="item-line"><span>${k}</span><span style="${bold?'font-weight:900':''}">${v||"-"}</span></div>`}
-function clearMain(){$("main1").value="";disableSelect($("main2"));disableSelect($("main3"))}
-function clearAdd(){$("add1").value="";disableSelect($("add2"))}
-function clearProduct(){$("productName").textContent="-";$("basePrice").textContent="-";setSelect($("main1"),[],"선택");disableSelect($("main2"));disableSelect($("main3"));setSelect($("add1"),[],"선택");disableSelect($("add2"))}
-function resetAll(){$("productNo").value="";selectedItems=[];rows=[];mainRows=[];addRows=[];clearProduct();renderCart();setStatus("")}
-clearProduct();loadData();
+function clearGroup(prefix){$(prefix+"1").value="";disableSelect($(prefix+"2"));disableSelect($(prefix+"3"))}
+function clearProduct(){$("productName").textContent="-";$("basePrice").textContent="-";setSelect($("main1"),[],"선택");disableSelect($("main2"));disableSelect($("main3"));setSelect($("add1"),[],"선택");disableSelect($("add2"));disableSelect($("add3"))}
+function resetAll(){$("productNo").value="";selectedItems=[];rows=[];mainRows=[];addRows=[];clearProduct();saveCart();renderCart();setStatus("")}
+clearProduct();loadCart();loadData();
 if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./service-worker.js").catch(()=>{}))}
 </script>
 </body>
