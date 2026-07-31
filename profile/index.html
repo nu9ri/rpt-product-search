@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f5f5f7">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="RPT 프로필조회">
+  <title>RPT 상품프로필조회</title>
+
+  <link rel="manifest" href="./manifest.json">
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+  <link rel="icon" href="./icon-192.png">
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <main class="app">
+    <header class="app-header">
+      <div>
+        <h1>RPT 상품프로필조회</h1>
+        <p id="version">모바일 v1.0</p>
+      </div>
+      <div id="dataStatus" class="status-pill">데이터 연결 중</div>
+    </header>
+
+    <section class="card search-card">
+      <label for="searchInput" class="search-label">상품코드 / 배번호</label>
+
+      <div class="search-row">
+        <div class="autocomplete-wrap">
+          <input
+            id="searchInput"
+            type="search"
+            inputmode="text"
+            autocomplete="off"
+            autocapitalize="off"
+            spellcheck="false"
+            placeholder="코드 또는 배번호 입력"
+            aria-label="상품코드 또는 배번호 검색"
+          >
+          <div id="suggestions" class="suggestions" hidden></div>
+        </div>
+
+        <button id="searchButton" class="button primary" type="button">검색</button>
+        <button id="resetButton" class="button primary" type="button">초기화</button>
+      </div>
+
+      <p id="message" class="message"></p>
+    </section>
+
+    <section class="card profile-card">
+      <div class="image-wrap">
+        <img id="productImage" alt="상품 이미지" hidden>
+        <div id="imagePlaceholder" class="image-placeholder">이미지 없음</div>
+      </div>
+
+      <dl class="profile-list">
+        <div class="profile-row">
+          <dt>상품코드</dt>
+          <dd id="productCode">-</dd>
+        </div>
+        <div class="profile-row">
+          <dt>배번호</dt>
+          <dd id="batchNo">-</dd>
+        </div>
+        <div class="profile-row">
+          <dt>상품명</dt>
+          <dd id="productName">-</dd>
+        </div>
+        <div class="profile-row">
+          <dt>옵션1</dt>
+          <dd id="option1">-</dd>
+        </div>
+        <div class="profile-row">
+          <dt>옵션2</dt>
+          <dd id="option2">-</dd>
+        </div>
+        <div class="profile-row">
+          <dt>옵션3</dt>
+          <dd id="option3">-</dd>
+        </div>
+        <div class="profile-row">
+          <dt>속성</dt>
+          <dd id="property">-</dd>
+        </div>
+        <div class="profile-row">
+          <dt>그룹</dt>
+          <dd id="group">-</dd>
+        </div>
+        <div class="profile-row link-row">
+          <dt>링크</dt>
+          <dd><a id="productLink" href="#" target="_blank" rel="noopener">-</a></dd>
+        </div>
+      </dl>
+    </section>
+
+    <section id="groupSection" class="card group-section" hidden>
+      <h2>같은 그룹 상품</h2>
+      <div id="groupList" class="group-list"></div>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>

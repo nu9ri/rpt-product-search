@@ -1,0 +1,52 @@
+RPT 상품프로필조회 모바일 - profile 폴더용
+
+이 버전은 기존 상품조회 모바일 파일을 덮어쓰지 않습니다.
+
+[GitHub 구조]
+
+rpt-product-search/
+│
+├─ index.html              기존 상품조회
+├─ app.js                  기존 상품조회
+├─ style.css               기존 상품조회
+├─ manifest.json           기존 상품조회
+├─ service-worker.js       기존 상품조회
+├─ products.json           공용 데이터
+├─ images/                 공용 상품 이미지
+│
+└─ profile/
+   ├─ index.html
+   ├─ app.js
+   ├─ style.css
+   ├─ manifest.json
+   ├─ service-worker.js
+   ├─ icon-192.png
+   ├─ icon-512.png
+   └─ apple-touch-icon.png
+
+[업로드 방법]
+
+1. GitHub 저장소 최상위에서 새 폴더를 만듭니다.
+   폴더명: profile
+
+2. 이 압축파일 안의 profile 폴더에 들어있는 파일만
+   GitHub의 profile 폴더 안에 업로드합니다.
+
+3. 기존 최상위 index.html, app.js, style.css 등은 교체하지 않습니다.
+
+[접속 주소]
+
+기존 상품조회:
+https://nu9ri.github.io/rpt-product-search/
+
+상품프로필조회:
+https://nu9ri.github.io/rpt-product-search/profile/
+
+[데이터 경로]
+
+프로필조회는 저장소 최상위의 아래 데이터를 함께 사용합니다.
+
+../products.json
+../images/
+
+따라서 products.json과 images 폴더를 profile 안에 복사할 필요가 없습니다.
