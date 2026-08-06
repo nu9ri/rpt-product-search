@@ -4,70 +4,59 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>RPT 상품조회</title>
-<link rel="manifest" href="manifest.json?v=8.5">
+<link rel="manifest" href="manifest.json?v=8.6">
 <meta name="theme-color" content="#f5f5f7">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="RPT 상품조회">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<link rel="apple-touch-icon" sizes="180x180" href="icons/icon-180.png?v=8.5">
-<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png?v=8.5">
-<link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png?v=8.5">
+<link rel="apple-touch-icon" sizes="180x180" href="icons/icon-180.png?v=8.6">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png?v=8.6">
+<link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png?v=8.6">
 <style>
-:root{--bg:#f5f5f7;--card:#fff;--text:#111;--line:#e5e5ea;--blue:#007aff;--red:#ff3b30}
+:root{--bg:#f5f5f7;--card:#fff;--text:#1d1d1f;--line:#d2d2d7;--blue:#0a84ff;--red:#ff3b30;--radius:18px;--shadow:0 3px 16px rgba(0,0,0,.07)}
 *{box-sizing:border-box}
 body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",Arial,sans-serif;background:var(--bg);color:var(--text)}
-.app{width:100vw;max-width:none;margin:0;padding:28px 18px 40px}
-.header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:18px}
-h1{margin:0;font-size:42px;letter-spacing:-1px}.ver{font-size:20px;color:#8e8e93}
-.card{background:var(--card);border-radius:28px;padding:26px;margin-bottom:22px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
-.row{display:flex;gap:14px;align-items:center}.label{width:108px;flex:0 0 108px;color:#555;font-size:24px;font-weight:700}
-.value-row{display:flex;justify-content:space-between;gap:14px;padding:8px 0;font-size:25px}
+.app{width:100%;max-width:780px;margin:0 auto;padding:max(22px, env(safe-area-inset-top)) 12px max(28px, env(safe-area-inset-bottom))}
+.header{display:flex;align-items:center;justify-content:space-between;margin:8px 4px 20px}
+h1{margin:0;font-size:32px;font-weight:750;letter-spacing:-.4px}.ver{font-size:16px;color:#8e8e93}
+.card{background:var(--card);border:1px solid rgba(0,0,0,.06);border-radius:var(--radius);padding:16px 14px;margin-bottom:20px;box-shadow:var(--shadow)}
+.row{display:flex;gap:8px;align-items:center}.label{width:72px;flex:0 0 72px;color:#555;font-size:17px;font-weight:700}
+.row input[type=text]{min-width:0;flex:1}
+.value-row{display:flex;justify-content:space-between;gap:8px;padding:9px 0;font-size:17px}
 .value-row .k{color:#666}.value-row .v{font-weight:700;text-align:right;max-width:70%;word-break:break-word;user-select:text}
-input[type=text]{width:100%;height:86px;border:2px solid #d1d1d6;background:#fff;border-radius:18px;padding:18px 16px;font-size:28px;outline:none}
-button{border:0;border-radius:18px;height:86px;padding:0 24px;font-size:26px;font-weight:700;background:var(--blue);color:#fff;white-space:nowrap}
+input[type=text]{width:100%;height:36px;border:1px solid var(--line);background:#fff;border-radius:11px;padding:0 12px;font-size:16px;outline:none}
+input[type=text]:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(10,132,255,.15)}
+button{border:0;border-radius:11px;height:36px;padding:0 14px;font-size:15px;font-weight:700;background:var(--blue);color:#fff;white-space:nowrap}
 button.secondary{background:#f2f2f7;color:#111}
-.section-title{font-size:28px;font-weight:800;margin-bottom:18px}
-.control{display:flex;align-items:flex-start;gap:16px;margin:16px 0}.control .label{font-weight:600;color:#666;padding-top:28px}
+.section-title{font-size:21px;font-weight:750;margin-bottom:12px}
+.control{display:flex;align-items:flex-start;gap:8px;margin:10px 0}.control .label{font-weight:650;color:#666;padding-top:14px}
 .selector-wrap{width:100%}
-.selector{width:100%;min-height:86px;border:2px solid #d1d1d6;background:#fff;border-radius:18px;padding:16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.selector{width:100%;min-height:48px;border:1px solid var(--line);background:#fff;border-radius:11px;padding:8px 10px;display:flex;align-items:center;justify-content:space-between;gap:8px}
 .selector.disabled{background:#f2f2f7;color:#8e8e93}
-.selector.open{border-radius:18px 18px 0 0}
-.selector-text{font-size:28px;font-weight:600;line-height:1.25;word-break:break-word;flex:1}
-.selector-price{font-size:26px;font-weight:800;text-align:right;min-width:110px;white-space:nowrap}
-.selector-arrow{font-size:22px;color:#777}
-.dropdown-list{display:none;background:#fff;border:2px solid #d1d1d6;border-top:0;border-radius:0 0 18px 18px;max-height:420px;overflow-y:auto;-webkit-overflow-scrolling:touch;box-shadow:0 8px 18px rgba(0,0,0,.10)}
+.selector.open{border-radius:11px 11px 0 0}
+.selector-text{font-size:16px;font-weight:600;line-height:1.3;word-break:break-word;flex:1}
+.selector-price{font-size:15px;font-weight:800;text-align:right;min-width:70px;white-space:nowrap}
+.selector-arrow{font-size:13px;color:#777}
+.dropdown-list{display:none;background:#fff;border:1px solid var(--line);border-top:0;border-radius:0 0 11px 11px;max-height:300px;overflow-y:auto;-webkit-overflow-scrolling:touch;box-shadow:0 8px 18px rgba(0,0,0,.10)}
 .dropdown-list.show{display:block}
-.dropdown-item{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 16px;border-bottom:1px solid #eee;background:#fff}
+.dropdown-item{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px;border-bottom:1px solid #eee;background:#fff}
 .dropdown-item:active{background:#f2f7ff}
-.dropdown-text{font-size:25px;line-height:1.25;font-weight:650;word-break:break-word;flex:1}
-.dropdown-price{font-size:25px;font-weight:900;text-align:right;min-width:110px;white-space:nowrap}
+.dropdown-text{font-size:15px;line-height:1.3;font-weight:650;word-break:break-word;flex:1}
+.dropdown-price{font-size:15px;font-weight:800;text-align:right;min-width:70px;white-space:nowrap}
 .cart{display:none}.cart.show{display:block}
-.item{background:#f9f9fb;border-radius:20px;padding:20px;margin-bottom:16px}
-.item-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.item-title{font-size:26px;font-weight:800}
-.x{border:0;background:transparent;color:var(--red);font-size:40px;padding:0 8px;line-height:1;height:auto}
-.item-line{display:flex;justify-content:space-between;gap:14px;font-size:24px;padding:5px 0}
+.item{background:#f9f9fb;border-radius:15px;padding:12px;margin-bottom:8px}
+.item-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}.item-title{font-size:17px;font-weight:750}
+.x{border:0;background:transparent;color:var(--red);font-size:28px;padding:0 6px;line-height:1;height:auto}
+.item-line{display:flex;justify-content:space-between;gap:8px;font-size:16px;padding:4px 0}
 .item-line span:first-child{color:#666}.item-line span:last-child{text-align:right;font-weight:600;user-select:text}
-.total{border-top:2px solid var(--line);padding-top:18px;margin-top:16px;display:flex;justify-content:space-between;font-weight:900;font-size:30px}
-.status{min-height:34px;text-align:center;color:#8e8e93;font-size:21px;margin-top:10px}
-.update-note{font-size:20px;color:#8e8e93;line-height:1.4}
-@media (max-width: 430px){
-  .app{width:100vw;max-width:none;margin:0;padding:22px 12px 34px}
-  h1{font-size:36px}.ver{font-size:18px}.card{padding:22px;border-radius:24px;margin-bottom:18px}
-  .label{width:94px;flex-basis:94px;font-size:21px}.value-row{font-size:22px}
-  input[type=text]{height:76px;font-size:24px;border-radius:16px}
-  button{height:76px;font-size:23px;border-radius:16px;padding:0 18px}
-  .section-title{font-size:25px}.item-title{font-size:24px}.item-line{font-size:21px}.total{font-size:27px}
-  .control .label{padding-top:24px}
-  .selector{min-height:76px;border-radius:16px;padding:14px}.selector.open{border-radius:16px 16px 0 0}
-  .selector-text{font-size:24px}.selector-price{font-size:23px;min-width:96px}
-  .dropdown-list{max-height:360px;border-radius:0 0 16px 16px}
-  .dropdown-text{font-size:22px}.dropdown-price{font-size:22px;min-width:96px}
-}
+.total{border-top:1px solid var(--line);padding-top:12px;margin-top:10px;display:flex;justify-content:space-between;font-weight:900;font-size:20px}
+.status{min-height:28px;text-align:center;color:#8e8e93;font-size:17px;line-height:1.5;margin-top:10px}
+.update-note{font-size:14px;color:#8e8e93;line-height:1.4}
 </style>
 </head>
 <body>
 <div class="app">
-  <div class="header"><h1>RPT 상품조회</h1><div class="ver">Auto v8.5</div></div>
+  <div class="header"><h1>RPT 상품조회</h1><div class="ver">Auto v8.6</div></div>
   <div class="card"><div class="row"><div class="label">상품번호</div><input id="productNo" type="text" inputmode="numeric" placeholder="상품번호 입력" /><button id="searchBtn">검색</button></div></div>
   <div class="card"><div class="value-row"><span class="k">상품명</span><span id="productName" class="v">-</span></div><div class="value-row"><span class="k">기본가</span><span id="basePrice" class="v">-</span></div></div>
   <div class="card">
